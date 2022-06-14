@@ -17,8 +17,10 @@ module.exports = {
   networks: {
     ropsten: {
       url: 'https://eth-ropsten.gateway.pokt.network/v1/lb/62a0c8ff87017d0039b81bb6',
-      chainId: 3, // 0x507 in hex,
-      accounts: [privateKey]
+      chainId: 3,
+      accounts: [privateKey],
+      gas: 2100000,
+      gasPrice: 8000000000
     },
     moonbase: {
       url: 'https://rpc.api.moonbase.moonbeam.network',

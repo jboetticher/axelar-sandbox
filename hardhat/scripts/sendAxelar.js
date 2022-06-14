@@ -6,7 +6,7 @@ const DESTINATION_NETWORK = 'moonbase';
 const DESTINATION_ADDRESS = '0x0394c0EdFcCA370B20622721985B577850B0eb75';
 const ORIGIN_TOKEN = '0xc778417E063141139Fce010982780140Aa0cD5Ab';
 const TOKEN_SYMBOL = 'WETH';
-const AMOUNT = '100000000000000000';
+const AMOUNT = '100000000000000000';      // 0.1 WETH
 
 async function main() {
   await hre.run('compile');
@@ -29,9 +29,13 @@ async function main() {
     "IERC20",
     ORIGIN_TOKEN
   );
+  console.log('Initialized token and gateway objects.');
+  console.log('Approving token for gateway address...');
 
   // Approve the gateway to use the token
   await token.approve(gatewayAddress, AMOUNT);
+  console.log('Approval finished.');
+  console.log('Sending token through gateway...');
 
   // Use gateway to send tokens
   const result = await gateway.sendToken(
@@ -40,7 +44,9 @@ async function main() {
     TOKEN_SYMBOL, // asset symbol
     AMOUNT // amount (in atomic units)
   );
+  
 
+  console.log('Token send through gateway finished.');
   console.log(result);
 }
 
