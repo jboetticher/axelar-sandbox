@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "@axelar-network/axelar-local-dev": "github:axelarnetwork/axelar-local-dev",
-    "@openzeppelin/contracts": "^4.6.0"
+    "@openzeppelin/contracts": "^4.6.0",
+    "axios": "^0.27.2"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.6",
