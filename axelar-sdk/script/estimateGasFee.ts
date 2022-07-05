@@ -1,6 +1,13 @@
 const { AxelarQueryAPI, Environment, EvmChain } = require("@axelar-network/axelarjs-sdk");
 import yargs from 'yargs';
 
+const args = yargs.options({
+    origin: { type: 'string', demandOption: true, alias: 'o' },
+    destination: { type: 'string', demandOption: true, alias: 'd' },
+    gasToken: { type: 'string', demandOption: true, alias: 't' },
+    gas: { type: 'number', demandOption: false, alias: 'g', default: 700000 }
+  }).argv;
+
 const sdk = new AxelarQueryAPI({
     environment: Environment.TESTNET,
 });
@@ -16,13 +23,11 @@ async function main(ORIGIN, DESTINATION, GAS_TOKEN, GAS) {
     console.log(gasFee);
 }
 
+/*
 const ORIGIN = EvmChain.ETHEREUM;
 const DESTINATION = EvmChain.MOONBEAM;
 const GAS_TOKEN = "ETH";
 const GAS = 7000000;
+*/
 
-main(ORIGIN, DESTINATION, GAS_TOKEN, GAS);
-
-//0xFFFFFFFF0CA324C842330521525E7DE111F38972
-//0x588538D1Eb40dB215C41eE02C298Ec54b8da0bB2
-//
+main(args.origin, args.destination, args.gasToken, args.gas);
