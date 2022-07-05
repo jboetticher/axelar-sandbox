@@ -11,6 +11,7 @@ async function main() {
       case 'moonbase': return '0x5769D84DD62a6fD969856c75c7D321b84d455929';
       case 'mumbai': return '0xBF62ef1486468a6bd26Dd669C06db43dEd5B849B';
       case 'fuji': return '0xC249632c2D40b9001FE907806902f63038B737Ab';
+      case 'fantom': return '0x97837985Ec0494E7b9C71f5D3f9250188477ae14';
       default: return '';
     }
   })(hre.network.name);
@@ -30,6 +31,7 @@ main()
   });
 
 // Moonbase   0x64d19F9B92879626B035dd59961b58D236946103
-// Fuji       0xFF0FAF2C30bcbAa9757ea19C74196C4D8F70a5fb
-// Mumbai     0xFF0FAF2C30bcbAa9757ea19C74196C4D8F70a5fb (yes they're the same)
 // Ropsten    0xB5F906476d7eCA41Fd00593A20D838611285B0B2
+// Mumbai     0xFF0FAF2C30bcbAa9757ea19C74196C4D8F70a5fb (yes they're the same)
+// Fuji       0xFF0FAF2C30bcbAa9757ea19C74196C4D8F70a5fb
+// Fantom     0xFF0FAF2C30bcbAa9757ea19C74196C4D8F70a5fb
