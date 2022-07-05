@@ -1,15 +1,5 @@
 require("@nomiclabs/hardhat-waffle");
 
-// This is a sample Hardhat task. To learn how to create your own go to
-// https://hardhat.org/guides/create-task.html
-task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
-  const accounts = await hre.ethers.getSigners();
-
-  for (const account of accounts) {
-    console.log(account.address);
-  }
-});
-
 const { privateKey } = require('./secrets.json');
 
 module.exports = {
@@ -18,13 +8,21 @@ module.exports = {
     ropsten: {
       url: 'https://eth-ropsten.gateway.pokt.network/v1/lb/62a0c8ff87017d0039b81bb6',
       chainId: 3,
-      accounts: [privateKey],
-      gas: 2100000,
-      gasPrice: 8000000000
+      accounts: [privateKey]
     },
     moonbase: {
       url: 'https://rpc.api.moonbase.moonbeam.network',
       chainId: 1287, // 0x507 in hex,
+      accounts: [privateKey]
+    },
+    mumbai: {
+      url: 'https://matic-mumbai.chainstacklabs.com',
+      chainId: 80001,
+      accounts: [privateKey]
+    },
+    fuji: {
+      url: 'https://api.avax-test.network/ext/bc/C/rpc',
+      chainId: 43113,
       accounts: [privateKey]
     }
   }
