@@ -2,11 +2,17 @@
 
 pragma solidity 0.8.9;
 
-import { IAxelarExecutable } from "https://github.com/axelarnetwork/axelar-cgp-solidity/blob/main/contracts/interfaces/IAxelarExecutable.sol";
-import { StringToAddress, AddressToString } from "./StringAddressUtils.sol";
-import { IERC20 } from "https://github.com/axelarnetwork/axelar-cgp-solidity/blob/main/contracts/interfaces/IERC20.sol";
-import { IAxelarGateway } from "https://github.com/axelarnetwork/axelar-cgp-solidity/blob/main/contracts/interfaces/IAxelarGateway.sol";
-import { IAxelarGasReceiver } from "./IAxelarGasReceiver.sol";
+// import { IAxelarExecutable } from "https://github.com/axelarnetwork/axelar-cgp-solidity/blob/main/contracts/interfaces/IAxelarExecutable.sol";
+// import { StringToAddress, AddressToString } from "./StringAddressUtils.sol";
+// import { IERC20 } from "https://github.com/axelarnetwork/axelar-cgp-solidity/blob/main/contracts/interfaces/IERC20.sol";
+// import { IAxelarGateway } from "https://github.com/axelarnetwork/axelar-cgp-solidity/blob/main/contracts/interfaces/IAxelarGateway.sol";
+// import { IAxelarGasReceiver } from "./IAxelarGasReceiver.sol";
+
+import "./axelar/IAxelarGateway.sol";
+import "./axelar/IAxelarGasReceiver.sol";
+import "./axelar/IAxelarExecutable.sol";
+import "./axelar/StringAddressUtils.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 // Moonbase Alpha
 // 0x559CDC37E1ABA65DFc208106A507f5eD7FCCe703
