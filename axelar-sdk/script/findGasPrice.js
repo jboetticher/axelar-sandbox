@@ -3,6 +3,10 @@ const {
 } = require("ethers");
 const axios = require("axios");
 
+
+// NOTE: I think that this has been built into the SDK. Look at eestimateGasFee\
+
+
 async function getGasPrice(
     sourceChain,
     destinationChain,
