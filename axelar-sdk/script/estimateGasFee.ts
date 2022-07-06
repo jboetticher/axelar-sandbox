@@ -5,7 +5,7 @@ const args = yargs.options({
     origin: { type: 'string', demandOption: true, alias: 'o' },
     destination: { type: 'string', demandOption: true, alias: 'd' },
     gasToken: { type: 'string', demandOption: true, alias: 't' },
-    gas: { type: 'number', demandOption: false, alias: 'g', default: 700000 }
+    gas: { type: 'number', demandOption: false, alias: 'g', default: 70000 }
   }).argv;
 
 const sdk = new AxelarQueryAPI({
