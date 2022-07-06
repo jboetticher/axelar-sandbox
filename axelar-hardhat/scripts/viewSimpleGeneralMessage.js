@@ -7,10 +7,11 @@ async function main() {
   // Gets the simple general message address for the network
   const simpleGeneralMessageAddress = ((network) => {
     switch(network) {
-      case 'ropsten': return '0xB5F906476d7eCA41Fd00593A20D838611285B0B2';
-      case 'moonbase': return '0x64d19F9B92879626B035dd59961b58D236946103';
-      case 'mumbai': return '0xFF0FAF2C30bcbAa9757ea19C74196C4D8F70a5fb';
-      case 'fuji': return '0xFF0FAF2C30bcbAa9757ea19C74196C4D8F70a5fb';
+      case 'moonbase': return '0x4d7A40C0F7950Ea270DA795B4e68a36a0d9FE8ad';
+      case 'ropsten': return '0xb96f012b2879117F9D4a2393Bd630202D6D4ba38';
+      case 'mumbai': return '0x06071356e3A09EA6365f63744aC5a4e0B2EE1f68';
+      case 'fuji': return '0x06071356e3A09EA6365f63744aC5a4e0B2EE1f68';
+      case 'fantom': return '0x06071356e3A09EA6365f63744aC5a4e0B2EE1f68';
       default: return '';
     }
   })(hre.network.name);
@@ -30,7 +31,3 @@ main()
     process.exit(1);
   });
 
-// Moonbase   0x64d19F9B92879626B035dd59961b58D236946103
-// Ropsten    0xB5F906476d7eCA41Fd00593A20D838611285B0B2
-// Mumbai     0xFF0FAF2C30bcbAa9757ea19C74196C4D8F70a5fb (yes they're the same)
-// Fuji       0xFF0FAF2C30bcbAa9757ea19C74196C4D8F70a5fb
