@@ -1,6 +1,6 @@
 const hre = require("hardhat");
 const { AxelarQueryAPI, Environment, EvmChain, GasToken } = require("@axelar-network/axelarjs-sdk");
-const { getGatewayAddress, gasReceiverAddress } = require("../gatewayGasReceiver");
+const { getGatewayAddress } = require("../gatewayGasReceiver");
 
 
 const ethers = hre.ethers;
@@ -29,8 +29,10 @@ async function main() {
         process.exit(1);
     }
 
+
     // Gets the gateway
     const gatewayAddress = getGatewayAddress(hre.network.name);
+    const MOONBASE_WDEV_ADDRESS = '0x1436aE0dF0A8663F18c0Ec51d7e2E46591730715';
 
     // Connect to contract
     const CrossChainNFT = await ethers.getContractFactory("CrossChainNFT");
@@ -59,10 +61,10 @@ async function main() {
     const gasFeeToHuman = ethers.utils.formatEther(ethers.BigNumber.from(gasFee));
     console.log(`Cross-Chain Gas Fee: ${gasFee} Wei / ${gasFeeToHuman} Ether`);
 
-    // Approve WDEV to be used by the CrossChainNFT
+    // Approve WDEV to be used by the NFT contract (transfer to contract, contract transfers to Gateway)
     const wDEV = await ethers.getContractAt(
         "IERC20", 
-        "0x1436aE0dF0A8663F18c0Ec51d7e2E46591730715"
+        MOONBASE_WDEV_ADDRESS
     );
     const approveRes = await wDEV.approve(
         ORIGIN_CHAIN_ADDRESS, 

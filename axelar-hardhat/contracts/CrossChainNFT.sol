@@ -3,6 +3,7 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "./axelar/IAxelarGateway.sol";
 import "./axelar/IAxelarGasReceiver.sol";
 import "./axelar/IAxelarExecutable.sol";
@@ -10,15 +11,17 @@ import "./axelar/StringAddressUtils.sol";
 
 // Allows users to mint an NFT, but only cross chain.
 contract CrossChainNFT is ERC721, IAxelarExecutable {
-    constructor(address _gateway, IAxelarGasReceiver _gasReceiver)
+    constructor(address _gateway, IAxelarGasReceiver _gasReceiver, IERC20 _wDev)
         ERC721("Cross Chain NFT", "XCNFT")
         IAxelarExecutable(_gateway)
     {
         gasReceiver = _gasReceiver;
+        wDev = _wDev;
     }
 
     uint256 currentNFTID;
     IAxelarGasReceiver gasReceiver;
+    IERC20 wDev;
 
     // Mints the NFT for the user
     function _executeWithToken(
@@ -47,14 +50,21 @@ contract CrossChainNFT is ERC721, IAxelarExecutable {
         //Create the payload.
         bytes memory payload = abi.encode(msg.sender);
 
-        //Pay for gas. We could also send the contract call here but then the sourceAddress will be that of the gas receiver which is a problem later.
         //You will need to call the SDK to find out how much gas you need
+        uint256 amount = 0.05 ether;
 
-        gasReceiver.payNativeGasForContractCall{value: msg.value}(
+        // This contract takes the tokens from your account and then puts them into the gateway
+        wDev.transferFrom(msg.sender, address(this), amount);
+        wDev.approve(address(gateway), amount);
+
+        //Pay for gas. We could also send the contract call here but then the sourceAddress will be that of the gas receiver which is a problem later.
+        gasReceiver.payNativeGasForContractCallWithToken{value: msg.value}(
             address(this),
             destinationChain,
             destinationAddress,
             payload,
+            "WDEV",
+            amount,
             msg.sender
         );
 
@@ -64,7 +74,7 @@ contract CrossChainNFT is ERC721, IAxelarExecutable {
             destinationAddress,
             payload,
             "WDEV",
-            0.05 ether
+            amount
         );
     }
 }
