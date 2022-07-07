@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@axelar-network/axelarjs-sdk": "^0.6.0-alpha.20",
     "@openzeppelin/contracts": "^4.6.0",
     "hardhat": "^2.9.9"
   },
