@@ -1,6 +1,16 @@
 const { AxelarQueryAPI, Environment, EvmChain } = require("@axelar-network/axelarjs-sdk");
 import yargs from 'yargs';
 
+/*
+Requires ts-node to be installed.
+
+ts-node estimateGasFee.ts -o Moonbeam -t DEV -g 100000 -d Ethereum
+ts-node estimateGasFee.ts -o Moonbeam -t DEV -g 100000 -d Polygon
+ts-node estimateGasFee.ts -o Moonbeam -t DEV -g 100000 -d Avalanche
+ts-node estimateGasFee.ts -o Moonbeam -t DEV -g 100000 -d Polygon
+
+*/
+
 const args = yargs.options({
     origin: { type: 'string', demandOption: true, alias: 'o' },
     destination: { type: 'string', demandOption: true, alias: 'd' },
