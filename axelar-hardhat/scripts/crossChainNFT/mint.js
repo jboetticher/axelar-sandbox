@@ -20,8 +20,8 @@ Use the constants below to change the parameters of the script.
 */
 
 const DESTINATION_CHAIN = EvmChain.FANTOM;
-const ORIGIN_CHAIN_ADDRESS = '0xa94EA3965977AEE505cFd7FEDfb595AbA225dDd5';
-const DESTINATION_CHAIN_ADDRESS = '0x827d4B6BD9660d1A4c42E4453307C8D3D5C1F051';
+const ORIGIN_CHAIN_ADDRESS = '0x09B8493556401ab4f4fC7303078132fEDdAd6295';
+const DESTINATION_CHAIN_ADDRESS = '0x7F553ebD8DcDDef432a7ebC35f74ec9926B00AD0';
 
 async function main() {
     if (hre.network.name !== 'moonbase') {
@@ -49,7 +49,7 @@ async function main() {
     Chains may refund gas if you paid much more than what was paid.
     Feel free to experiment to figure out what a benchmark gas fee would be for your implementation.
 
-    The following code will return DEV amount to pay in gas
+    The following code will return DEV amount to pay in gas.
     */
     const estimateGasUsed = 400000;
     const gasFee = await sdk.estimateGasFee(
@@ -66,13 +66,16 @@ async function main() {
         "IERC20", 
         MOONBASE_WDEV_ADDRESS
     );
-    const approveRes = await wDEV.approve(
+    const approveTx = await wDEV.approve(
         ORIGIN_CHAIN_ADDRESS, 
         ethers.utils.parseUnits("0.05", "ether")
     );
-    console.log("Approve transaction hash: ", approveRes.hash);
+    // there's an issue with approval. I think it doesn't register until next block
+    console.log("Approved: ", ethers.utils.parseUnits("0.05", "ether")); 
+    console.log("Approve transaction hash: ", approveTx.hash);
 
     // Begin the minting
+    ethers.provider.waitForTransaction(approveTx.hash, 3);
     const mintRes = await nft.mintXCNFT(
         DESTINATION_CHAIN_ADDRESS,
         DESTINATION_CHAIN,

@@ -3,7 +3,7 @@
 pragma solidity 0.8.9;
 
 // This should be owned by the microservice that is paying for gas.
-interface IAxelarGasReceiver {
+interface IAxelarGasService {
     error NotOwner();
     error TransferFailed();
     error NothingReceived();

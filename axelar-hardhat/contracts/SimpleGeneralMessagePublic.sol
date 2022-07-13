@@ -15,7 +15,7 @@ import "./axelar/StringAddressUtils.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 // Packages and sends a string from one chain to another.
-contract SimpleGeneralMessage is IAxelarExecutable {
+contract SimpleGeneralMessagePublic is IAxelarExecutable {
    using AddressToString for address;
    using StringToAddress for string;
  
