@@ -41,3 +41,15 @@ const GAS = 7000000;
 */
 
 main(args.origin, args.destination, args.gasToken, args.gas);
+
+/*
+
+Ropsten Testnet:    356806741787800000
+                    16078410246397597000
+Polygon Mumbai:     3390032863000000
+                    150179749261484700
+Avalanche Fuji:     97036323830100000
+                    189508513681809730
+Fantom Testnet:     55389864900000
+                    100319259770461700
+*/
